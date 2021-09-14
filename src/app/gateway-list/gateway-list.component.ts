@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import {GatewayService} from '../services/gateway.service';
 
 export interface PeriodicElement {
   name: string;
@@ -46,11 +47,15 @@ export class GatewayListComponent implements OnInit, AfterViewInit {
   filterValue = '';
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
-  constructor() {
+  constructor(private gatewayService: GatewayService) {
   }
 
   ngOnInit(): void {
     this.dataSource.data = ELEMENT_DATA;
+
+    this.gatewayService.getAllGateways().subscribe((data: any[])=> {
+      console.log(data);
+    })
   }
 
   ngAfterViewInit(): void {

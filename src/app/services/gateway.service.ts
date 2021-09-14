@@ -12,6 +12,6 @@ export class GatewayService {
   }
 
   public getAllGateways() {
-    return this.http.get(this.REST_API_SERVER);
+    return this.http.get<any[]>(this.REST_API_SERVER);
   }
 }
