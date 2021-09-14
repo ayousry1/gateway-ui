@@ -3,6 +3,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {GatewayService} from '../services/gateway.service';
 import {Gateway} from '../models/Gateway';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-gateway-list',
@@ -17,7 +18,7 @@ export class GatewayListComponent implements OnInit, AfterViewInit {
   filterValue = '';
   displayedColumns: string[] = ['serialNumber', 'name', 'ip4Address', 'peripheralDevices'];
 
-  constructor(private gatewayService: GatewayService) {
+  constructor(private gatewayService: GatewayService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -34,4 +35,8 @@ export class GatewayListComponent implements OnInit, AfterViewInit {
   public doFilter = () => {
     this.dataSource.filter = this.filterValue.trim().toLocaleLowerCase();
   };
+
+  displayDetails(row: Gateway) {
+    this.router.navigate(['details'], {queryParams: {serial: row.serialNumber}});
+  }
 }

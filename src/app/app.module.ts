@@ -11,11 +11,13 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import { GatewayDetailsComponent } from './gateway-details/gateway-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GatewayListComponent
+    GatewayListComponent,
+    GatewayDetailsComponent
   ],
   imports: [
     BrowserModule,
