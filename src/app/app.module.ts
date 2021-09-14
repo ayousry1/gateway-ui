@@ -12,6 +12,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { GatewayDetailsComponent } from './gateway-details/gateway-details.component';
+import {AlertModule} from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -28,11 +29,12 @@ import { GatewayDetailsComponent } from './gateway-details/gateway-details.compo
     MatInputModule,
     BrowserModule,
     AppRoutingModule,
+    AlertModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatTableModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
