@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Gateway} from '../models/Gateway';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,6 @@ export class GatewayService {
   }
 
   public getAllGateways() {
-    return this.http.get<any[]>(this.REST_API_SERVER);
+    return this.http.get<Gateway[]>(this.REST_API_SERVER);
   }
 }
