@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Gateway} from "../../models/Gateway";
 import {GatewayService} from "../../services/gateway.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -19,7 +19,7 @@ export class GatewayDetailsComponent implements OnInit {
   table!: MatTable<any>;
 
   constructor(private gatewayService: GatewayService, private route: ActivatedRoute,
-              private _snackBar: MatSnackBar) {
+              private _snackBar: MatSnackBar, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -45,10 +45,6 @@ export class GatewayDetailsComponent implements OnInit {
   }
 
   removeDevice(uid: number) {
-    console.log("*****");
-    console.log(uid);
-    console.log("******");
-
     this.gatewayService.deleteDevice(this.serial, uid).subscribe((data) => {
       if (data == null) {
         this.gateway.peripheralDevices = this.gateway.peripheralDevices
@@ -64,6 +60,10 @@ export class GatewayDetailsComponent implements OnInit {
         this.openSnackBar("device or gateway not found");
       }
     });
+  }
+
+  goToMainList() {
+    this.router.navigate(['']);
   }
 
 }
