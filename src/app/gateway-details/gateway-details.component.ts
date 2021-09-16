@@ -4,6 +4,9 @@ import {Gateway} from "../../models/Gateway";
 import {GatewayService} from "../../services/gateway.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatTable} from "@angular/material/table";
+import {DeviceDialogBoxComponent} from "../device-dialog-box/device-dialog-box.component";
+import {MatDialog} from "@angular/material/dialog";
+import {Device} from "../../models/Device";
 
 @Component({
   selector: 'app-gateway-details',
@@ -19,7 +22,8 @@ export class GatewayDetailsComponent implements OnInit {
   table!: MatTable<any>;
 
   constructor(private gatewayService: GatewayService, private route: ActivatedRoute,
-              private _snackBar: MatSnackBar, private router: Router) {
+              private _snackBar: MatSnackBar, private router: Router,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -65,5 +69,16 @@ export class GatewayDetailsComponent implements OnInit {
   goToMainList() {
     this.router.navigate(['']);
   }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DeviceDialogBoxComponent, {
+      data: new Device(0, '', '', '')
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('***** result is :: ' + result);
+    });
+  }
+
 
 }

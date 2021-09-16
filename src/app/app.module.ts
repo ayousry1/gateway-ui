@@ -15,12 +15,17 @@ import {AppRoutingModule} from "./app-routing.module";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { DeviceDialogBoxComponent } from './device-dialog-box/device-dialog-box.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
     AppComponent,
     GatewayListComponent,
-    GatewayDetailsComponent
+    GatewayDetailsComponent,
+    DeviceDialogBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -35,9 +40,14 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

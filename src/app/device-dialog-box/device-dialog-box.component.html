@@ -1,0 +1,33 @@
+<div mat-dialog-content>
+  <div class="col-6">
+    <mat-form-field appearance="fill" style="min-width: 235px">
+      <mat-label>UID</mat-label>
+      <input matInput type="number" [(ngModel)]="data.uid">
+    </mat-form-field>
+  </div>
+  <div class="col-6">
+    <mat-form-field appearance="fill" style="min-width: 235px">
+      <mat-label>Vendor</mat-label>
+      <input matInput [(ngModel)]="data.vendor">
+    </mat-form-field>
+  </div>
+  <div class="col-6">
+    <mat-form-field appearance="fill" >
+      <mat-label>Date Created</mat-label>
+      <input [(ngModel)]="data.dateCreated" matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="col-6">
+    <mat-form-field appearance="fill" style="min-width: 235px">
+      <mat-label>Status</mat-label>
+      <input matInput [(ngModel)]="data.status">
+    </mat-form-field>
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Add</button>
+</div>
