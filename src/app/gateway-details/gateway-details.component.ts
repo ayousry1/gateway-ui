@@ -39,7 +39,6 @@ export class GatewayDetailsComponent implements OnInit {
 
   getGatewayDetailsBySerial() {
     this.gatewayService.getGatewayDetails(this.serial).subscribe((data: Gateway) => {
-      console.log(data);
       this.gateway = data;
     });
   }
@@ -76,19 +75,29 @@ export class GatewayDetailsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
       result.dateCreated = new Date(result.dateCreated).toISOString();
 
-      this.gatewayService.addDevice(this.serial, result).subscribe((data) => {
+      if (this.editMode) {
+        this.gatewayService.addDevice(this.serial, result).subscribe((data) => {
+          this.gateway.peripheralDevices.push(result);
+          this.table.renderRows();
+        }, error => {
+          if (error.status == 404) {
+            this.openSnackBar("gateway not found");
+          }
+        });
+      } else {
         this.gateway.peripheralDevices.push(result);
         this.table.renderRows();
-      }, error => {
-        if (error.status == 404) {
-          this.openSnackBar("gateway not found");
-        }
-      });
+      }
     });
   }
 
+  submitGateway() {
+    console.log("********************");
+    console.log(this.gateway);
+    console.log("********************");
 
+
+  }
 }
