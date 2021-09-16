@@ -14,7 +14,7 @@ export class GatewayListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource = new MatTableDataSource;
   filterValue = '';
-  displayedColumns: string[] = ['serialNumber', 'name', 'ip4Address', 'peripheralDevices'];
+  displayedColumns: string[] = ['serialNumber', 'name', 'ip4Address', 'peripheralDevices','action'];
 
   constructor(private gatewayService: GatewayService, private router: Router) {
   }
