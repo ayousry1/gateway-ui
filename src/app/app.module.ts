@@ -19,13 +19,15 @@ import { DeviceDialogBoxComponent } from './device-dialog-box/device-dialog-box.
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { GatewayDialogBoxComponent } from './gateway-dialog-box/gateway-dialog-box.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GatewayListComponent,
     GatewayDetailsComponent,
-    DeviceDialogBoxComponent
+    DeviceDialogBoxComponent,
+    GatewayDialogBoxComponent
   ],
   imports: [
     BrowserModule,
