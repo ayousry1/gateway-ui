@@ -4,6 +4,7 @@ import {GatewayService} from "../../services/gateway.service";
 import {Gateway} from "../../models/Gateway";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-gateway-list',
@@ -14,9 +15,10 @@ export class GatewayListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource = new MatTableDataSource;
   filterValue = '';
-  displayedColumns: string[] = ['serialNumber', 'name', 'ip4Address', 'peripheralDevices','action'];
+  displayedColumns: string[] = ['serialNumber', 'name', 'ip4Address', 'peripheralDevices', 'action'];
 
-  constructor(private gatewayService: GatewayService, private router: Router) {
+  constructor(private gatewayService: GatewayService, private router: Router,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -38,7 +40,7 @@ export class GatewayListComponent implements OnInit, AfterViewInit {
     this.router.navigate(['details'], {queryParams: {serial: row.serialNumber}});
   }
 
-  openDialog() {
-
+  gotToDetailsPageForCreation(){
+    this.router.navigate(['details']);
   }
 }
