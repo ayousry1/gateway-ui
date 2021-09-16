@@ -1,8 +1,18 @@
 <div class="container">
-  <mat-form-field class="example-form-field">
-    <mat-label>Filter</mat-label>
-    <input matInput type="text" (keyup)="doFilter()" [(ngModel)]="filterValue">
-  </mat-form-field>
+
+
+  <div class="row" style="margin-top: 20px">
+    <div class="col-3">
+      <mat-form-field class="example-form-field">
+        <mat-label>Filter</mat-label>
+        <input matInput type="text" (keyup)="doFilter()" [(ngModel)]="filterValue">
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <button mat-button mat-flat-button color="primary" (click)="openDialog()">Add Device</button>
+    </div>
+  </div>
+
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-bottom: 20px">
 
 

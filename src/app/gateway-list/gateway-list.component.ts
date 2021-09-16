@@ -38,4 +38,7 @@ export class GatewayListComponent implements OnInit, AfterViewInit {
     this.router.navigate(['details'], {queryParams: {serial: row.serialNumber}});
   }
 
+  openDialog() {
+
+  }
 }
