@@ -22,9 +22,14 @@
   <div class="col-6">
     <mat-form-field appearance="fill" style="min-width: 235px">
       <mat-label>Status</mat-label>
-      <input matInput [(ngModel)]="data.status">
+      <select matNativeControl [(ngModel)]="data.status" required>
+        <option value="ONLINE">Online</option>
+        <option value="OFFLINE">Offline</option>
+      </select>
     </mat-form-field>
   </div>
+
+
 
 </div>
 <div mat-dialog-actions>

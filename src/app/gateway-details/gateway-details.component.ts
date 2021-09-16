@@ -72,11 +72,21 @@ export class GatewayDetailsComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DeviceDialogBoxComponent, {
-      data: new Device(0, '', '', '')
+      data: new Device(0, '', '', 'OFFLINE')
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('***** result is :: ' + result);
+
+      result.dateCreated = new Date(result.dateCreated).toISOString();
+
+      this.gatewayService.addDevice(this.serial, result).subscribe((data) => {
+        this.gateway.peripheralDevices.push(result);
+        this.table.renderRows();
+      }, error => {
+        if (error.status == 404) {
+          this.openSnackBar("gateway not found");
+        }
+      });
     });
   }
 
