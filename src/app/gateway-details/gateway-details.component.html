@@ -41,18 +41,27 @@
     </ng-container>
 
     <ng-container matColumnDef="vendor">
-      <th mat-header-cell *matHeaderCellDef style="text-align: center"> vendor</th>
+      <th mat-header-cell *matHeaderCellDef style="text-align: center"> Vendor</th>
       <td mat-cell *matCellDef="let element"> {{element.vendor}} </td>
     </ng-container>
 
     <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef style="text-align: center"> status</th>
+      <th mat-header-cell *matHeaderCellDef style="text-align: center"> Status</th>
       <td mat-cell *matCellDef="let element"> {{element.status}} </td>
     </ng-container>
 
     <ng-container matColumnDef="dateCreated">
-      <th mat-header-cell *matHeaderCellDef style="text-align: center"> dateCreated</th>
+      <th mat-header-cell *matHeaderCellDef style="text-align: center"> Creation Date</th>
       <td mat-cell *matCellDef="let element"> {{element.dateCreated}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center"> Action </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-mini-fab color="danger" (click)="removeDevice(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
