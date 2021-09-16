@@ -1,12 +1,12 @@
 export class Device {
-  UID: number;
+  uid: number;
   vendor: string;
   dateCreated: string;
   status: string;
 
 
-  constructor(UID: number, vendor: string, dateCreated: string, status: string) {
-    this.UID = UID;
+  constructor(uid: number, vendor: string, dateCreated: string, status: string) {
+    this.uid = uid;
     this.vendor = vendor;
     this.dateCreated = dateCreated;
     this.status = status;

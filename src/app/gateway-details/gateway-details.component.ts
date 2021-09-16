@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Gateway} from "../../models/Gateway";
 import {GatewayService} from "../../services/gateway.service";
-import {Device} from "../../models/Device";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatTable} from "@angular/material/table";
 
 @Component({
   selector: 'app-gateway-details',
@@ -13,9 +14,12 @@ export class GatewayDetailsComponent implements OnInit {
   serial = '';
   editMode = false;
   gateway = new Gateway('', '', '', []);
-  displayedColumns: string[] = ['UID', 'vendor', 'status', 'dateCreated', 'action'];
+  displayedColumns: string[] = ['uid', 'vendor', 'status', 'dateCreated', 'action'];
+  @ViewChild(MatTable, {static: true})
+  table!: MatTable<any>;
 
-  constructor(private gatewayService: GatewayService, private route: ActivatedRoute) {
+  constructor(private gatewayService: GatewayService, private route: ActivatedRoute,
+              private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -36,9 +40,30 @@ export class GatewayDetailsComponent implements OnInit {
     });
   }
 
-  removeDevice(element: Device) {
-    console.log("*****");
-    console.log(element);
-    console.log("******");
+  openSnackBar(message: string) {
+    this._snackBar.open(message);
   }
+
+  removeDevice(uid: number) {
+    console.log("*****");
+    console.log(uid);
+    console.log("******");
+
+    this.gatewayService.deleteDevice(this.serial, uid).subscribe((data) => {
+      if (data == null) {
+        this.gateway.peripheralDevices = this.gateway.peripheralDevices
+          .filter((value, key) => {
+            return value.uid != uid;
+          });
+        this.table.renderRows();
+      } else {
+
+      }
+    }, error => {
+      if (error.status == 404) {
+        this.openSnackBar("device or gateway not found");
+      }
+    });
+  }
+
 }

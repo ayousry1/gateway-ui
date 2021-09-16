@@ -19,4 +19,8 @@ export class GatewayService {
   public getGatewayDetails(serial: string) {
     return this.http.get<Gateway>(this.REST_API_SERVER + "/" + serial);
   }
+
+  public deleteDevice(serial: string, uid: number) {
+    return this.http.delete(this.REST_API_SERVER + serial + "/devices/" + uid);
+  }
 }
