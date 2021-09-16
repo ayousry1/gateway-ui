@@ -7,6 +7,7 @@ export class Gateway {
   peripheralDevices: Device[];
 
 
+
   constructor(serialNumber: string, name: string, ip4Address: string, peripheralDevices: Device[]) {
     this.serialNumber = serialNumber;
     this.name = name;

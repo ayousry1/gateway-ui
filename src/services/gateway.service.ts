@@ -15,4 +15,8 @@ export class GatewayService {
   public getAllGateways() {
     return this.http.get<Gateway[]>(this.REST_API_SERVER);
   }
+
+  public getGatewayDetails(serial: string) {
+    return this.http.get<Gateway>(this.REST_API_SERVER + "/" + serial);
+  }
 }
