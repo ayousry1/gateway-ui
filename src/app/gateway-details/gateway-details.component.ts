@@ -59,9 +59,7 @@ export class GatewayDetailsComponent implements OnInit {
 
       }
     }, error => {
-      if (error.status == 404) {
-        this.openSnackBar("device or gateway not found");
-      }
+      this.openSnackBar(error.error.message);
     });
   }
 
@@ -82,9 +80,7 @@ export class GatewayDetailsComponent implements OnInit {
           this.gateway.peripheralDevices.push(result);
           this.table.renderRows();
         }, error => {
-          if (error.status == 404) {
-            this.openSnackBar("gateway not found");
-          }
+          this.openSnackBar(error.error.message);
         });
       } else {
         this.gateway.peripheralDevices.push(result);
@@ -94,10 +90,10 @@ export class GatewayDetailsComponent implements OnInit {
   }
 
   submitGateway() {
-    console.log("********************");
-    console.log(this.gateway);
-    console.log("********************");
-
-
+    this.gatewayService.addGateway(this.gateway).subscribe((data) => {
+      this.goToMainList();
+    }, error => {
+      this.openSnackBar(error.error.message);
+    });
   }
 }

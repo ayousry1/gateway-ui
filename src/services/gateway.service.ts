@@ -28,4 +28,7 @@ export class GatewayService {
   public addDevice(serial: string, device: Device) {
     return this.http.post(this.REST_API_SERVER + serial + "/devices" , device);
   }
+  public addGateway(gateway : Gateway){
+    return this.http.post(this.REST_API_SERVER , gateway);
+  }
 }
